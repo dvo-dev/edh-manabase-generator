@@ -3,7 +3,7 @@ from get_card import get_card_by_name
 
 if __name__ == "__main__":
     commander_name = input("Please enter the name of an EDH commander: ")
-    colors = get_card_by_name(commander_name)["color_identity"]
+    colors = get_card_by_name(card_name=commander_name)["color_identity"]
 
     fetches = get_fetch_lands(colors=colors)
     duals = get_dual_lands(colors=colors)
