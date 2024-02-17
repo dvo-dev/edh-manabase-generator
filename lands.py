@@ -1,3 +1,5 @@
+from typing import List
+
 DUAL_LANDS = [
     {"name": "Tundra", "colors": {"W", "U"}},
     {"name": "Underground Sea", "colors": {"U", "B"}},
@@ -63,7 +65,31 @@ TRIOMES = [
     {"name": "Spara's Headquarters", "colors": {"G", "W", "U"}}
 ]
 
-def get_fetch_lands(colors: [str]) -> [str]:
+UTILITY_LANDS = [
+    {"name": "Eiganjo, Seat of the Empire", "colors": {"W"}},
+    {"name": "Minas Tirith", "colors": {"W"}},
+    {"name": "Castle Ardenvale", "colors": {"W"}},
+
+    {"name": "Otawara, Soaring City", "colors": {"U"}},
+    {"name": "Mystic Sanctuary", "colors": {"U"}},
+    {"name": "Castle Vantress", "colors": {"U"}},
+    {"name": "Rivendell", "colors": {"U"}},
+
+    {"name": "Bojuka Bog", "colors": {"B"}},
+    {"name": "Castle Locthwain", "colors": {"B"}},
+    {"name": "Takenuma, Abandoned Mire", "colors": {"B"}},
+    {"name": "Barad-dûr", "colors": {"B"}},
+
+    {"name": "Sokenzan, Crucible of Defiance", "colors": {"R"}},
+    {"name": "Castle Embereth", "colors": {"R"}},
+    {"name": "Mines of Moria", "colors": {"R"}},
+
+    {"name": "Boseiju, Who Endures", "colors": {"G"}},
+    {"name": "Castle Garenbrig", "colors": {"G"}},
+    {"name": "The Shire", "colors": {"G"}},
+]
+
+def get_fetch_lands(colors: List[str]) -> List[str]:
     fetch_lands = []
     for land in FETCH_LANDS:
         if any(color in land["colors"] for color in colors):
@@ -71,7 +97,7 @@ def get_fetch_lands(colors: [str]) -> [str]:
 
     return fetch_lands
 
-def get_dual_lands(colors: [str]) -> [str]:
+def get_dual_lands(colors: List[str]) -> List[str]:
     dual_lands = []
     colors_set = set(colors)
     for land in DUAL_LANDS:
@@ -80,7 +106,7 @@ def get_dual_lands(colors: [str]) -> [str]:
 
     return dual_lands
 
-def get_shock_lands(colors: [str]) -> [str]:
+def get_shock_lands(colors: List[str]) -> List[str]:
     shock_lands = []
     colors_set = set(colors)
     for land in SHOCK_LANDS:
@@ -88,3 +114,12 @@ def get_shock_lands(colors: [str]) -> [str]:
             shock_lands.append(land["name"])
 
     return shock_lands
+
+def get_utility_lands(colors: List[str]) -> List[str]:
+    utility_lands = []
+    colors_set = set(colors)
+    for land in UTILITY_LANDS:
+        if land["colors"].issubset(colors_set):
+            utility_lands.append(land["name"])
+
+    return utility_lands
